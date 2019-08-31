@@ -1,0 +1,24 @@
+sudo: required
+language: python
+python: '3.7'
+dist: xenial
+
+cache:
+  pip: true
+
+matrix:
+  include:
+    - name: 'MariaDB'
+      addons:
+        mariadb: '10.3'
+
+    - name: 'MySQL'
+      services:
+        - mysql
+
+install:
+  - python -m pip install --upgrade pip wheel setuptools
+  - pip install -r requirements.txt
+
+script:
+  - python manage.py test
