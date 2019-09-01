@@ -11,6 +11,8 @@ matrix:
     - name: 'MariaDB'
       addons:
         mariadb: '10.3'
+      before_script:
+        - mysql --user="root" --execute="SET GLOBAL character_set_server='utf8mb4'"
 
     - name: 'MySQL'
       services:
