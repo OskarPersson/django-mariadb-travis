@@ -11,8 +11,6 @@ matrix:
     - name: 'MariaDB'
       addons:
         mariadb: '10.3'
-      before_script:
-        - mysql --user="root" --execute="SET GLOBAL character_set_server='utf8mb4'"
 
     - name: 'MySQL'
       services:
@@ -21,6 +19,9 @@ matrix:
 install:
   - python -m pip install --upgrade pip wheel setuptools
   - pip install -r requirements.txt
+
+before_script:
+  - mysql --user="root" --execute="SET GLOBAL character_set_server='utf8mb4'"
 
 script:
   - python manage.py test
